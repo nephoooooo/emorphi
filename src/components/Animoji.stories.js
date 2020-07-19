@@ -11,6 +11,7 @@ export default {
 const expressionOptions = {
     'Normal': 'normal',
     'Surprised': 'surprised',
+    'Laughing': 'laughing',
 };
 
 export const Expressions = () => (
