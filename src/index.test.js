@@ -1,7 +1,7 @@
-import { Animoji } from '.'
+import Emorphi from '.'
 
-describe('Animoji', () => {
+describe('Emorphi', () => {
   it('is truthy', () => {
-    expect(Animoji).toBeTruthy()
+    expect(Emorphi).toBeTruthy()
   })
 })

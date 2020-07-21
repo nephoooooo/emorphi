@@ -50,11 +50,11 @@ const TRANSFORMS = {
     __DEFAULT: 'normal',
 }
 
-const Animoji = ({ expression = 'normal' }) => {
+const Emorphi = ({ expression = 'normal' }) => {
     return (
         <svg width="128" height="128">
             <circle key="face" cx="64" cy="64" r="64" fill="orange" />
-            <g className="Animoji-face" transform={selectOptions(TRANSFORMS, expression)}>
+            <g className="Emorphi-face" transform={selectOptions(TRANSFORMS, expression)}>
                 <Eye key="eye--left" x="38" y="60" variant={selectOptions(EYE_VARIANTS, expression)} />
                 <Eyebrow key="eyebrow--left" x="38" y="30" variant={selectOptions(EYEBROW_VARIANTS, expression)} />
                 <Eye key="eye--right" x="90" y="60" variant={selectOptions(EYE_VARIANTS, expression)} instance="right" />
@@ -63,12 +63,12 @@ const Animoji = ({ expression = 'normal' }) => {
             </g>
 
             <style jsx="true">{`
-                .Animoji-face {
-                    transition: transform 250ms;
+                .Emorphi-face {
+                    transition: transform 250ms forwards;
                 }
             `}</style>
         </svg>
     );
 }
 
-export default Animoji;
+export default Emorphi;

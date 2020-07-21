@@ -1,30 +1,21 @@
-# animoji
+# emorphi
 
-> Made with create-react-library
-
-[![NPM](https://img.shields.io/npm/v/animoji.svg)](https://www.npmjs.com/package/animoji) [![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com)
-
-## Install
-
-```bash
-npm install --save animoji
-```
+`emorphi` is a React.js component that displays a smiley with a small set of facial expressions for the time being. There is a transition between expressions.
 
 ## Usage
 
 ```jsx
-import React, { Component } from 'react'
+(
+  <Emorphi expression="%EXPRESSION%" />
+)
+```
 
-import MyComponent from 'animoji'
-import 'animoji/dist/index.css'
+Please refer to [the storybook](https://nephoooooo.github.io/emorphi) for all expression options.
 
-class Example extends Component {
-  render() {
-    return <MyComponent />
-  }
-}
+```sh
+yarn storybook
 ```
 
 ## License
 
-MIT © [bambus-tw](https://github.com/bambus-tw)
+MIT © [Sherlock Kuo](https://github.com/nephoooooo)
