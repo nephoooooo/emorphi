@@ -13,6 +13,7 @@ const expressionOptions = {
     'Surprised': 'surprised',
     'Laughing': 'laughing',
     'Sad': 'sad',
+    'Angry': 'angry',
 };
 
 export const Expressions = () => (

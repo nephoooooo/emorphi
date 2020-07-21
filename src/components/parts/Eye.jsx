@@ -2,26 +2,35 @@ import React from 'react';
 
 import selectOptions from '../../utils/selectOptions';
 
+const NORMAL_CLIP = 'polygon(-16px -16px, 16px -16px, 16px 16px, -16px 16px)';
+const CLOSED_CLIP = 'polygon(-16px 12px, 16px 12px, 16px 12px, -16px 12px)';
 const OPTIONS = {
     'normal': {
         whiteRadius: 14,
         irisRadius: 12,
+        clip: NORMAL_CLIP,
     },
     'scared': {
         whiteRadius: 16,
         irisRadius: 10,
+        clip: NORMAL_CLIP,
     },
     'closed-tightly': {
         whiteRadius: 14,
         irisRadius: 12,
-        isClosed: true,
+        clip: CLOSED_CLIP,
         isTightlyClosedEyeOn: true,
     },
     'sad': {
         whiteRadius: 14,
         irisRadius: 12,
-        isClosed: true,
+        clip: CLOSED_CLIP,
         isClosedEyeOn: true,
+    },
+    'angry': {
+        whiteRadius: 16,
+        irisRadius: 8,
+        clip: 'polygon(-16px 7px, 16px 7px, 16px 16px, -16px 16px)',
     },
 };
 
@@ -30,13 +39,13 @@ OPTIONS.__DEFAULT = 'normal';
 const Eye = ({ x = 0, y = 0, stareX = 0, stareY = 0.5, shouldBlink = true, variant = 'normal', instance = 'left' }) => {
     let classes = ['Eye'];
 
-    let { whiteRadius, irisRadius, isClosed, isClosedEyeOn, isTightlyClosedEyeOn } = selectOptions(OPTIONS, variant);;
-
-    if (isClosed) {
-        classes.push('Eye--closed');
-    } else if (shouldBlink) {
-        classes.push('Eye--blink');
-    }
+    let {
+        whiteRadius,
+        irisRadius,
+        clip,
+        isClosedEyeOn,
+        isTightlyClosedEyeOn
+    } = selectOptions(OPTIONS, variant);
 
     return (
         <g transform={`translate(${x} ${y})`}>
@@ -51,16 +60,9 @@ const Eye = ({ x = 0, y = 0, stareX = 0, stareY = 0.5, shouldBlink = true, varia
 
             <style jsx="true">{`
                 .Eye {
-                    clip-path: polygon(-16px -16px, 16px -16px, 16px 16px, -16px 16px);
+                    clip-path: ${clip};
                     transition: clip-path 100ms;
-                }
-
-                .Eye--blink {
                     animation: Eye-blink 5s ease-in-out infinite;
-                }
-
-                .Eye--closed {
-                    clip-path: polygon(-16px 12px, 16px 12px, 16px 12px, -16px 12px);
                 }
 
                 .Eye-white {
@@ -73,13 +75,13 @@ const Eye = ({ x = 0, y = 0, stareX = 0, stareY = 0.5, shouldBlink = true, varia
 
                 @keyframes Eye-blink {
                     95% {
-                        clip-path: polygon(-16px -16px, 16px -16px, 16px 16px, -16px 16px);
+                        clip-path: ${clip};
                     }
                     97.5% {
-                        clip-path: polygon(-16px 12px, 16px 12px, 16px 12px, -16px 12px);
+                        clip-path: ${CLOSED_CLIP};
                     }
                     100% {
-                        clip-path: polygon(-16px -16px, 16px -16px, 16px 16px, -16px 16px);
+                        clip-path: ${clip};
                     }
                 }
 

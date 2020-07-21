@@ -7,6 +7,7 @@ const PATHS = {
     'raised': 'M-7 0 Q0 -8, 7 0',
     'frown': 'M-10 17 Q-5 10, 3 5',
     'sad': 'M-5 0 Q0 8, 8 10',
+    'angry': 'M-12 12 Q-5 17, 5 7',
     __DEFAULT: 'normal',
 };
 
