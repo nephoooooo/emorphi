@@ -6,6 +6,7 @@ const PATHS = {
     'normal': 'M-8 5 Q0 0, 8 5',
     'raised': 'M-7 0 Q0 -8, 7 0',
     'frown': 'M-10 17 Q-5 10, 3 5',
+    'sad': 'M-5 0 Q0 8, 8 10',
     __DEFAULT: 'normal',
 };
 
@@ -19,7 +20,7 @@ const Eyebrow = ({ x = 0, y = 0, variant = 'normal', instance = 'left' }) => {
                     transition: d 100ms;
                     fill: transparent;
                     stroke: black;
-                    stroke-width: 3;
+                    stroke-width: 5;
                     stroke-linecap: round;
                 }
 

@@ -8,18 +8,21 @@ const EYE_VARIANTS = {
     'normal': 'normal',
     'surprised': 'scared',
     'laughing': 'closed-tightly',
+    'sad': 'sad',
 };
 
 const EYEBROW_VARIANTS = {
     'normal': 'normal',
     'surprised': 'raised',
     'laughing': 'frown',
+    'sad': 'sad',
 };
 
 const MOUTH_VARIANTS = {
     'normal': 'smile',
     'surprised': 'o',
     'laughing': 'laugh',
+    'sad': 'sad',
 };
 
 const Animoji = ({ expression = 'normal' }) => {

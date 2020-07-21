@@ -17,6 +17,12 @@ const OPTIONS = {
         isClosed: true,
         isTightlyClosedEyeOn: true,
     },
+    'sad': {
+        whiteRadius: 14,
+        irisRadius: 12,
+        isClosed: true,
+        isClosedEyeOn: true,
+    },
 };
 
 OPTIONS.__DEFAULT = 'normal';
@@ -24,7 +30,7 @@ OPTIONS.__DEFAULT = 'normal';
 const Eye = ({ x = 0, y = 0, stareX = 0, stareY = 0.5, shouldBlink = true, variant = 'normal', instance = 'left' }) => {
     let classes = ['Eye'];
 
-    let { whiteRadius, irisRadius, isClosed, isTightlyClosedEyeOn } = selectOptions(OPTIONS, variant);;
+    let { whiteRadius, irisRadius, isClosed, isClosedEyeOn, isTightlyClosedEyeOn } = selectOptions(OPTIONS, variant);;
 
     if (isClosed) {
         classes.push('Eye--closed');
@@ -40,7 +46,8 @@ const Eye = ({ x = 0, y = 0, stareX = 0, stareY = 0.5, shouldBlink = true, varia
                 <circle cx="8" cy="-6" r="4" fill="rgba(255, 255, 255, 0.9)" />
             </g>
 
-            <TightlyClosedEye instance={instance} isOn={isTightlyClosedEyeOn} />
+            <ClosedEyeOverlay instance={instance} isOn={isClosedEyeOn} />
+            <TightlyClosedEyeOverlay instance={instance} isOn={isTightlyClosedEyeOn} />
 
             <style jsx="true">{`
                 .Eye {
@@ -75,46 +82,62 @@ const Eye = ({ x = 0, y = 0, stareX = 0, stareY = 0.5, shouldBlink = true, varia
                         clip-path: polygon(-16px -16px, 16px -16px, 16px 16px, -16px 16px);
                     }
                 }
+
+                .Eye-overlay {
+                    fill: transparent;
+                    stroke: black;
+                    stroke-width: 4;
+                    stroke-linecap: round;
+                    opacity: 0;
+                }
+
+                .Eye-overlay--on {
+                    opacity: 1;
+                    transition: opacity 250ms;
+                }
+
+                .Eye-overlay--off {
+                    opacity: 0;
+                }
+
+                .Eye-overlay--flipped {
+                    transform: scaleX(-1);
+                }
             `}</style>
         </g>
     );
 }
 
-const TightlyClosedEye = ({ isOn, instance }) => {
+const ClosedEyeOverlay = ({ isOn, instance }) => {
     let classNames = [
-        'TightlyClosedEye',
-        `TightlyClosedEye--${isOn ? 'on' : 'off'}`,
+        'Eye-overlay',
+        `Eye-overlay--${isOn ? 'on' : 'off'}`,
     ];
 
     if (instance === 'left') {
-        classNames.push('TightlyClosedEye--flipped');
+        classNames.push('Eye-overlay--flipped');
+    }
+
+    return (
+        <g>
+            <path key="closedeye" className={classNames.join(' ')} d="M-12 4 Q0 12, 12 4" />
+        </g>
+    );
+}
+
+const TightlyClosedEyeOverlay = ({ isOn, instance }) => {
+    let classNames = [
+        'Eye-overlay',
+        `Eye-overlay--${isOn ? 'on' : 'off'}`,
+    ];
+
+    if (instance === 'left') {
+        classNames.push('Eye-overlay--flipped');
     }
 
     return (
         <g>
             <path key="tightlyclosedeye" className={classNames.join(' ')} d="M12 -12 L-12 0 L 12 12" />
-            <style jsx="true">{`
-                .TightlyClosedEye {
-                    fill: transparent;
-                    stroke: black;
-                    stroke-width: 3;
-                    stroke-linecap: round;
-                    opacity: 0;
-                }
-
-                .TightlyClosedEye--on {
-                    opacity: 1;
-                    transition: opacity 250ms;
-                }
-
-                .TightlyClosedEye--off {
-                    opacity: 0;
-                }
-
-                .TightlyClosedEye--flipped {
-                    transform: scaleX(-1);
-                }
-            `}</style>
         </g>
     );
 }
