@@ -32,6 +32,11 @@ const OPTIONS = {
         irisRadius: 8,
         clip: 'polygon(-16px 7px, 16px 7px, 16px 16px, -16px 16px)',
     },
+    'narrow': {
+        whiteRadius: 14,
+        irisRadius: 12,
+        clip: 'polygon(-16px 4px, 16px 4px, 16px 13px, -16px 13px)',
+    },
 };
 
 OPTIONS.__DEFAULT = 'normal';

@@ -10,6 +10,7 @@ const EYE_VARIANTS = {
     'laughing': 'closed-tightly',
     'sad': 'sad',
     'angry': 'angry',
+    'smirk': 'narrow',
 };
 
 const EYEBROW_VARIANTS = {
@@ -20,12 +21,18 @@ const EYEBROW_VARIANTS = {
     'angry': 'angry',
 };
 
+const RIGHT_EYEBROW_VARIANTS = {
+    ...EYEBROW_VARIANTS,
+    'smirk': 'raised',
+};
+
 const MOUTH_VARIANTS = {
     'normal': 'smile',
     'surprised': 'o',
     'laughing': 'laugh',
     'sad': 'sad',
     'angry': 'angry',
+    'smirk': 'smirk',
 };
 
 const Animoji = ({ expression = 'normal' }) => {
@@ -35,7 +42,7 @@ const Animoji = ({ expression = 'normal' }) => {
             <Eye key="eye--left" x="38" y="60" variant={EYE_VARIANTS[expression]} />
             <Eyebrow key="eyebrow--left" x="38" y="30" variant={EYEBROW_VARIANTS[expression]} />
             <Eye key="eye--right" x="90" y="60" variant={EYE_VARIANTS[expression]} instance="right" />
-            <Eyebrow key="eyebrow--right" x="90" y="30" variant={EYEBROW_VARIANTS[expression]} instance="right" />
+            <Eyebrow key="eyebrow--right" x="90" y="30" variant={RIGHT_EYEBROW_VARIANTS[expression]} instance="right" />
             <Mouth key="mouth" x="64" y="96" variant={MOUTH_VARIANTS[expression]} />
         </svg>
     );
